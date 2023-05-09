@@ -7,7 +7,7 @@
 body {
   margin: 0;
   padding: 0;
-  color: #030303;
+  color: #6b4f4d;
 }
 
 #main-container {
@@ -23,13 +23,13 @@ body {
 }
 
 #sidebar {
-  width: 450px;
+  width: 500px;
   height: 1000px;
   padding: 1rem;
   font-size: 0.9rem;
   overflow-y: scroll;
   box-sizing: border-box;
-  background-color: #fbfafa;
+  background-color: #ffffff;
   /* margin: 10px;
   border-radius: 15px; */
 }
@@ -70,18 +70,19 @@ table, th, td {
 
 /* font styling */
 h1 {
-  font-size: 20px;
-  line-height: 30px;
-  color: #A90A03;
+  font-size: 30px;
+  line-height: 35px;
+  color: #6b4f4d;
 }
 
 h2 {
-  font-size: 14px;
+  font-size: 18px;
   line-height: 20px;
+  font-weight: normal;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: normal;
   text-transform: uppercase;
 }
