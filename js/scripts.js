@@ -36,8 +36,6 @@ map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', function () {
 
-  console.log();
-
   // jackson heights NTA border
   map.addSource('jackson_heights_geojson', {
     type: 'geojson',
@@ -48,6 +46,9 @@ map.on('load', function () {
     id: 'line-jh',
     type: 'line',
     source: 'jackson_heights_geojson',
+    'layout': {
+      'visibility': 'visible'
+    },
     paint: {
       'line-width': 5,
       'line-color': '#857271'
@@ -64,6 +65,9 @@ map.on('load', function () {
   map.addLayer({
     "id": "outside_jh_mask",
     "source": "outside_jackson_heights",
+    'layout': {
+      'visibility': 'visible'
+    },
     "type": "fill",
     "paint": {
       "fill-color": "#857271",
@@ -72,7 +76,7 @@ map.on('load', function () {
   });
 
 
-  // real estate sold >4x since 2003 (PLUTO polygons)
+   // real estate sold >4x since 2003 (PLUTO polygons)
   map.addSource('reflips_geojson', {
     type: 'geojson',
     data: reflips_w_pluto
@@ -121,6 +125,34 @@ map.on('load', function () {
 
   });
 
+
+  // buttons
+
+  // button to hide jackson heights NTA mask
+  $('#remove-mask').on('click', function () {
+    map.setLayoutProperty('outside_jh_mask', 'visibility', 'none');
+    map.setLayoutProperty('line-jh', 'visibility', 'none');
+    console.log("1");
+  })
+
+  // button to show jackson heights NTA mask
+  $('#show-mask').on('click', function () {
+    map.setLayoutProperty('outside_jh_mask', 'visibility', 'visible');
+    map.setLayoutProperty('line-jh', 'visibility', 'visible');
+    console.log("2");
+  })
+
+ // button to return to home page
+  $('#home').on('click', function () {
+    document.getElementById('chart').style.display = "none";
+    $('#description').html(`
+    <h2>
+      <br>
+      Description TBD.
+    </h2>
+    `);
+  })
+
 })
 
 
@@ -138,7 +170,7 @@ let makeChart = (data, chartDiv) => {
   var y_saleprices = [];
 
   data.forEach(object => {
-    if(object['saleprice'] != 0) { // filter our $0 transactions
+    if (object['saleprice'] != 0) { // filter our $0 transactions
       x_saledates.push(new Date(object['sale_date']));
       y_saleprices.push(object['saleprice']);
     }
@@ -172,19 +204,19 @@ let makeChart = (data, chartDiv) => {
             unitStepSize: 1,
             displayFormats: {
               'year': 'yyyy'
-              }
             }
-          },
-          y: {
-            ticks: {
-              callback: function (value, index, ticks) {
-                return '$' + Chart.Ticks.formatters.numeric.apply(this, [value, index, ticks]); // format y axis as $XXX,XXX
-              }
+          }
+        },
+        y: {
+          ticks: {
+            callback: function (value, index, ticks) {
+              return '$' + Chart.Ticks.formatters.numeric.apply(this, [value, index, ticks]); // format y axis as $XXX,XXX
             }
           }
         }
       }
-    });
+    }
+  });
 
 }
 
