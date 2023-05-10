@@ -132,14 +132,14 @@ map.on('load', function () {
   $('#remove-mask').on('click', function () {
     map.setLayoutProperty('outside_jh_mask', 'visibility', 'none');
     map.setLayoutProperty('line-jh', 'visibility', 'none');
-    console.log("1");
+    map.fitBounds([-74.25581, 40.41798, -73.73367, 40.94616]);
   })
 
   // button to show jackson heights NTA mask
   $('#show-mask').on('click', function () {
     map.setLayoutProperty('outside_jh_mask', 'visibility', 'visible');
     map.setLayoutProperty('line-jh', 'visibility', 'visible');
-    console.log("2");
+    map.fitBounds([-73.90516, 40.74195, -73.86543, 40.76525]);
   })
 
  // button to return to home page
