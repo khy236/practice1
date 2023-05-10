@@ -7,17 +7,17 @@ let ctx = document.getElementById('chart');
 
 // dummy chart
 var tempChart = new Chart(ctx, {
-  type: 'line', 
+  type: 'line',
   data: {
     labels: [0],
-  datasets: [{ 
-    data: [0]
-  }]
+    datasets: [{
+      data: [0]
+    }]
   }
 });
-    
+
 // hide dummy chart
-document.getElementById('chart').style.display = "none"; 
+document.getElementById('chart').style.display = "none";
 
 
 // shading mask boundaries
@@ -100,15 +100,6 @@ map.on('load', function () {
       return element.bbl == bbl;
     });
 
-    // clear out table
-    //$("#tblDiv").html("");
-
-    // make table of sales data
-    //makeTable(lot_sales, $("#tblDiv"));
-
-    // clear out chart
-    //$("#chart").html("");
-
     // make chart of sales data
     makeChart(lot_sales, $("#chart"));
 
@@ -133,40 +124,6 @@ map.on('load', function () {
 })
 
 
-// function that loops through array to create HTML table
-// fdapted from: https://stackoverflow.com/questions/66481697/create-html-table-from-array-loop-specific and https://stackoverflow.com/questions/21515354/display-htmltableelement-object-returned-from-function 
-/* let makeTable = (arr, tableDiv) => {
-
-  let table = document.createElement('table');
-
-  // delete BBL, previous sale price, and previous sale date columns
-  arr.forEach(object => {
-    delete object['bbl'];
-    delete object['prev_saleprice'];
-    delete object['prev_saledate'];
-    object['saleprice'] = formatter.format(object['saleprice']);
-  });
-
-  // add header row
-  arr.unshift({ saleprice: "Sale price", sale_date: "Sale date", saletime: "Days after last sale" });
-
-  // loop through data in array
-  for (let entry of arr) {
-    let row = document.createElement('tr');
-    Object.values(entry).forEach(value => {
-      let data = document.createElement('td');
-      data.appendChild(document.createTextNode(value));
-      row.appendChild(data);
-    });
-    table.appendChild(row);
-  }
-
-  // append break and table to tableDiv (created in index.html)
-  tableDiv.append(table);
-  return;
-} */
-
-
 // function that creates sales chart
 let makeChart = (data, chartDiv) => {
 
@@ -181,46 +138,53 @@ let makeChart = (data, chartDiv) => {
   var y_saleprices = [];
 
   data.forEach(object => {
-    x_saledates.push(new Date(object['sale_date']));
-    y_saleprices.push(object['saleprice']);
+    if(object['saleprice'] != 0) { // filter our $0 transactions
+      x_saledates.push(new Date(object['sale_date']));
+      y_saleprices.push(object['saleprice']);
+    }
   });
 
+  // create new chart
   tempChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: x_saledates,
       datasets: [{
-        label: 'Real estate sale price',
+        label: 'Sale price ($)',
         data: y_saleprices,
-        //borderColor: '#000066',
-        //tension: 0.2
+        borderColor: '#CF807D',
+        borderWidth: 1.5,
+        borderCapStyle: "round",
+        tension: 0.1,
+        pointBackgroundColor: '#857271', // color options: 6b4f4d, 857271
+        pointBorderWidth: 0,
+        pointRadius: 2.5
       }]
-    } ,
+    },
     options: {
       scales: {
         x: {
-          type: "timeseries"/* ,
-          adapters: {
-            date: {
-              locale: en-US,
+          type: "time",
+          time: {
+            parser: 'MM/DD/YYYY HH:mm',
+            tooltipFormat: 'MM/dd/yyyy', // format popup dates MM/DD/YYYY
+            unit: 'year', // format x axis as YYYY
+            unitStepSize: 1,
+            displayFormats: {
+              'year': 'yyyy'
+              }
             }
-          } */
-          //display: true,
-          //scaleLabel: {
-            //display: true,
-            //labelString: 'Date'
-          //},
-        },
-        y: {
-          ticks: {
-            callback: function(value, index, ticks) {
-              return '$' + Chart.Ticks.formatters.numeric.apply(this, [value, index, ticks]);
-          }
+          },
+          y: {
+            ticks: {
+              callback: function (value, index, ticks) {
+                return '$' + Chart.Ticks.formatters.numeric.apply(this, [value, index, ticks]); // format y axis as $XXX,XXX
+              }
+            }
           }
         }
       }
-    } 
-  });
+    });
 
 }
 
