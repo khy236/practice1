@@ -1,6 +1,18 @@
 // my token
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2h5MjM2IiwiYSI6ImNsZzVxYTVnNDA1d2kzZW45b3l5d280N3oifQ.GqfNX5HwLaA5utEN2iQkXg';
 
+// initialize chart
+let ctx = document.getElementById('chart');
+var tempChart = new Chart(ctx, {
+  type: 'line', 
+  data: {
+    labels: [0],
+  datasets: [{ 
+    data: [0]
+  }]
+  }
+});
+
 // shading mask boundaries
 var bounds = [-74.62413, 40.39242, -73.36096, 41.22521]
 
@@ -88,7 +100,7 @@ map.on('load', function () {
     //makeTable(lot_sales, $("#tblDiv"));
 
     // clear out chart
-    $("#chart").html("");
+    //$("#chart").html("");
 
     // make chart of sales data
     makeChart(lot_sales, $("#chart"));
@@ -150,18 +162,7 @@ map.on('load', function () {
 // function that creates sales chart
 let makeChart = (data, chartDiv) => {
 
-  let ctx = document.getElementById('chart');
-
   // destroy previous chart
-  var tempChart = new Chart(ctx, {
-    type: 'line', 
-    data: {
-      labels: [0],
-    datasets: [{ 
-      data: [0]
-    }]
-    }
-  });
   tempChart.destroy();
 
   // create array of sale dates and array of sale prices
