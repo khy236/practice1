@@ -1,8 +1,11 @@
 // my token
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2h5MjM2IiwiYSI6ImNsZzVxYTVnNDA1d2kzZW45b3l5d280N3oifQ.GqfNX5HwLaA5utEN2iQkXg';
 
+
 // initialize chart
 let ctx = document.getElementById('chart');
+
+// dummy chart
 var tempChart = new Chart(ctx, {
   type: 'line', 
   data: {
@@ -12,6 +15,10 @@ var tempChart = new Chart(ctx, {
   }]
   }
 });
+    
+// hide dummy chart
+document.getElementById('chart').style.display = "none"; 
+
 
 // shading mask boundaries
 var bounds = [-74.62413, 40.39242, -73.36096, 41.22521]
@@ -108,13 +115,14 @@ map.on('load', function () {
     // add details to description div
     $('#description').html(`
     <div>
-    <b> Address: </b>
+    <br>
+    <h2><b>Address</b></h2>
     <h3>
         ${feature.properties.address},
         <br>
         ${feature.properties.borough}, New York ${feature.properties.zipcode}
     </h3>
-    <b> Sales history: </b>
+    <h2><b>Sales history</b></h2>
     <p>
         Sold ${lot_sales.length} times since 2003.
     </p>
@@ -162,6 +170,9 @@ map.on('load', function () {
 // function that creates sales chart
 let makeChart = (data, chartDiv) => {
 
+  // unhide chart div
+  document.getElementById('chart').style.display = "";
+
   // destroy previous chart
   tempChart.destroy();
 
@@ -179,7 +190,7 @@ let makeChart = (data, chartDiv) => {
     data: {
       labels: x_saledates,
       datasets: [{
-        //label: 'Chart Title',
+        label: 'Real estate sale price',
         data: y_saleprices,
         //borderColor: '#000066',
         //tension: 0.2
@@ -199,6 +210,13 @@ let makeChart = (data, chartDiv) => {
             //display: true,
             //labelString: 'Date'
           //},
+        },
+        y: {
+          ticks: {
+            callback: function(value, index, ticks) {
+              return '$' + Chart.Ticks.formatters.numeric.apply(this, [value, index, ticks]);
+          }
+          }
         }
       }
     } 

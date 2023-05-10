@@ -23,7 +23,7 @@ body {
 }
 
 #sidebar {
-  width: 500px;
+  width: 1200px;
   height: 1000px;
   padding: 1rem;
   font-size: 0.9rem;
@@ -43,12 +43,18 @@ body {
   font-size: 14px;
 }
 
+/* table styling */
 table, th, td {
   border: 1px solid;
   border-collapse: collapse;
   text-align: right;
   padding: 5px;
 }
+
+/* chart styling 
+#chart {
+}
+*/
 
 
 /* mobile view */
