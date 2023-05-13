@@ -98,10 +98,13 @@ map.on('load', function () {
 
     const feature = e.features[0];
     bbl = Math.round(feature.properties.BBL);
-
+    address = feature.properties.address_todisplay;
+    
+    console.log(feature.properties);
+    
     // find all sales matching BBL
     var lot_sales = $.grep(reflips, function (element, index) {
-      return element.bbl == bbl;
+      return element.address == address;
     });
 
     // make chart of sales data
@@ -113,13 +116,22 @@ map.on('load', function () {
     <br>
     <h2><b>Address</b></h2>
     <h3>
-        ${feature.properties.address},
+        ${feature.properties.address_todisplay},
         <br>
         ${feature.properties.borough}, New York ${feature.properties.zipcode}
-    </h3>
+    <h2><b>Property details</b></h2>
+    <p>
+      Year built: ${feature.properties.yearbuilt}<br>
+      Building class category: ${feature.properties.building_class_category}<br>
+      Total units: ${feature.properties.units}<br>
+      Residential units: ${feature.properties.unitsres_todisplay}<br>
+      Commercial units: ${feature.properties.unitscomm}<br>  
+    </p>
     <h2><b>Sales history</b></h2>
     <p>
-        Sold ${lot_sales.length} times since 2003.
+        This property has been sold ${lot_sales.length} time(s) since 2003.
+    <h2><b>Price history</b></h2>
+        The chart below shows the property's sales price over time, excluding $0 transactions.
     </p>
     </div>`);
 
@@ -175,6 +187,9 @@ let makeChart = (data, chartDiv) => {
       y_saleprices.push(object['saleprice']);
     }
   });
+
+  //sort dates array
+  x_saledates.sort((a, b) => a - b);
 
   // create new chart
   tempChart = new Chart(ctx, {
