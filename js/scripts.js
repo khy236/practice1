@@ -1,3 +1,10 @@
+// TO DO
+// 1. handle multiple properties on one BBL
+// 2. find new focus area
+// 3. add imagery/narrative w/popups (pictures) for select properties
+
+
+
 // my token
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2h5MjM2IiwiYSI6ImNsZzVxYTVnNDA1d2kzZW45b3l5d280N3oifQ.GqfNX5HwLaA5utEN2iQkXg';
 
@@ -98,9 +105,7 @@ map.on('load', function () {
 
     const feature = e.features[0];
     bbl = Math.round(feature.properties.BBL);
-    address = feature.properties.address_todisplay;
-    
-    console.log(feature.properties);
+    address = feature.properties.address;
     
     // find all sales matching BBL
     var lot_sales = $.grep(reflips, function (element, index) {
@@ -114,20 +119,18 @@ map.on('load', function () {
     $('#description').html(`
     <div>
     <br>
-    <h2><b>Address</b></h2>
+    <h2><b>DOF-recorded sale address</b></h2>
     <h3>
-        ${feature.properties.address_todisplay},
+        ${feature.properties.address},
         <br>
-        ${feature.properties.borough}, New York ${feature.properties.zipcode}
+        ${feature.properties.Borough}, New York ${feature.properties.ZipCode}
     <h2><b>Property details</b></h2>
     <p>
-      Year built: ${feature.properties.yearbuilt}<br>
-      Building class category: ${feature.properties.building_class_category}<br>
-      Total units: ${feature.properties.units}<br>
-      Residential units: ${feature.properties.unitsres_todisplay}<br>
-      Commercial units: ${feature.properties.unitscomm}<br>  
+      Year built: ${feature.properties.YearBuilt}<br>
+      DOF building class category: "${feature.properties.building_class_category}"<br>
+      Total units: ${feature.properties.units} (${feature.properties.unitsres} residential and ${feature.properties.unitscom} commercial)<br>
     </p>
-    <h2><b>Sales history</b></h2>
+    <h2><b>Sales volume</b></h2>
     <p>
         This property has been sold ${lot_sales.length} time(s) since 2003.
     <h2><b>Price history</b></h2>
