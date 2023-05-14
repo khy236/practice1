@@ -15,14 +15,18 @@
 
         <div id="content-container">
             <div id="sidebar">
-                <h1>Real estate flipping in Jackson Heights</h1>
+                <h1>Real estate flipping in Central Brooklyn</h1>
                 <div id="description">
                     <h2>
                         <br>
-                        Description TBD.
+                        This map shows properties that have been sold 5+ times over the last three decades (since 2003) in red based on <a href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page' target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized Sales data</a>.
+                        <br><br>
+                        <b>Click</b> on a property to view its sales history.
+                        <br><br>
+                        <b>Toggle</b> between a focused view on Central Brooklyn and a view of the entire city by clicking the navigation buttons on the top-right.
                     </h2>
                 </div>
-                <div id="tblDiv"></div>
+                <div id="chart_text"></div>
                 <div>
                     <canvas id="chart"></canvas>
                 </div>
@@ -30,7 +34,7 @@
             <div id="map"></div>
             <button id="home" class="button" role="button"><i class="fa-solid fa-house"></i></i> Return to home page</button>
             <button id="remove-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-minus"></i> Show me the whole city</button>
-            <button id="show-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-plus"></i> Focus on Jackson Heights</button>
+            <button id="show-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-plus"></i> Focus on Central Brooklyn</button>
         </div>
 
     </div>
@@ -47,7 +51,8 @@
     <script src="js/scripts.js"></script>
     <script src="data/reflips_w_pluto_230514.js"></script>
     <script src="data/reflips_230514.js"></script>
-    <script src="data/jackson_heights_nta.js"></script>
+    <script src="data/ntas.js"></script>
+    <script src="data/select_ntas_dissolved.js"></script>
 
 </body>
 
