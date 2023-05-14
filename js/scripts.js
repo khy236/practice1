@@ -111,6 +111,11 @@ map.on('load', function () {
       return element.address == address;
     });
 
+    lot_sales.forEach(object => {
+      console.log(object['address']);
+      console.log(object['bbl']);
+    })
+
     // make chart of sales data
     makeChart(lot_sales, $("#chart"));
 
@@ -125,10 +130,11 @@ map.on('load', function () {
         ${feature.properties.Borough}, New York ${feature.properties.ZipCode}
     <h2><b>Property details</b></h2>
     <p>
-      Current owner: "${feature.properties.OwnerName}"<br>
-      Year built: ${feature.properties.YearBuilt}<br>
-      DOF building class category: "${feature.properties.building_class_category}"<br>
-      Total units: ${feature.properties.units} (${feature.properties.unitsres} residential and ${feature.properties.unitscom} commercial)<br>
+      <b>BBL</b>: ${feature.properties.BBL}<br>
+      <b>Name of current owner</b>: "${feature.properties.OwnerName}"<br>
+        <b>Year built</b>: ${feature.properties.YearBuilt}<br>
+      <b>DOF building class category</b>: "${feature.properties.building_class_category}"<br>
+      <b>Total units</b>: ${feature.properties.units} (${feature.properties.unitsres} residential and ${feature.properties.unitscom} commercial)<br>
     </p>
     <h2><b>Sales volume</b></h2>
     <p>
@@ -195,7 +201,7 @@ let makeChart = (data, chartDiv) => {
       y_saleprices.push(parseInt(object['saleprice']));
     }
   });
-
+  
   // do not produce chart if all sales were for $0
   if(i == y_saleprices.length) {
     $('#chart_text').html(`
@@ -217,7 +223,7 @@ let makeChart = (data, chartDiv) => {
   if (i == (y_saleprices.length-1)) {
     // find non-zero price and date
     y_saleprices.forEach(object => {
-      if (object['saleprice'] != 0) {
+      if (object != 0) {
         nonzero_price = object;
         nonzero_date_position = y_saleprices.indexOf(nonzero_price);
         nonzero_date = x_saledates[nonzero_date_position];
