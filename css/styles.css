@@ -78,6 +78,14 @@ table, th, td {
 }
 
 
+/* popup */
+.mapboxgl-popup-content {
+  color: #6b4f4d;
+  background-color: #ffffff;
+  opacity: 100%;
+}
+
+
 /* mobile view */
 @media only screen and (max-width: 800px) {
   #content-container {

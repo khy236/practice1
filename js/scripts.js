@@ -1,8 +1,6 @@
 // TO DO
 // 1. handle multiple properties on one BBL
 // 2. add imagery/narrative w/popups (pictures) for select properties
-// 3. add address, bbl, # sales on hover
-
 
 
 // my token
@@ -176,8 +174,20 @@ map.on('load', function () {
     document.getElementById('chart').style.display = "none";
     $('#description').html(`
     <h2>
-      <br>
-      Description TBD.
+        <br>
+        Properties that were sold 5+ times over the last three decades (since 2003) are highlighted in red. 
+        <br><br><br>
+        <b>Hover</b> over a red, highlighted property to view its details.
+        <br><br>
+        <b>Click</b> on a red, highlighted property to view its sales history.
+        <br><br>
+        <b>Find</b> a specific address using the search bar.
+        <br><br>
+        <b>Toggle</b> between a focused view on Central Brooklyn and a view of the entire city using the navigation buttons on the top-right.
+        <br><br><br><br>
+        Property sales data is from the <a href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page' target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized Sales</a>. 
+        <br>
+        Tax lot-level data is from <a href='https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page' target="_blank" rel="noopener noreferrer">NYC PLUTO</a>.
     </h2>
     `);
     $('#chart_text').html(``);
@@ -321,7 +331,7 @@ map.on('mouseenter', 'fill-reflips', (e) => {
   map.getCanvas().style.cursor = 'pointer';
 
   const coordinates = e.features[0].geometry.coordinates[0][0];
-  
+
   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
   }
