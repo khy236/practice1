@@ -55,26 +55,26 @@ table, th, td {
 /* button positions */
 #home {
   position: absolute;
-  top: 10px;
+  top: 55px;
   right: 50px;
   text-align: left;
-  width: 210px;
+  width: 200px;
 }
 
 #remove-mask {
   position: absolute;
-  top: 50px;
+  top: 95px;
   right: 50px;
   text-align: left;
-  width: 210px;
+  width: 200px;
 }
 
 #show-mask {
   position: absolute;
-  top: 90px;
+  top: 135px;
   right: 50px;
   text-align: left;
-  width: 210px;
+  width: 200px;
 }
 
 
