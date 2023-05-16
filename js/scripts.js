@@ -1,13 +1,3 @@
-// TO DO
-// add info button on bottom right. add popup data sources to it, remove from description.
-// add nabe photos and nta bounds?
-// change to bushwick, bedstuy, crownheights, ocean hill (top 5 NTAs)?
-// add imagery/narrative w/popups (pictures) for select properties
-// handle multiple properties on one BBL
-
-
-
-
 // my token
 mapboxgl.accessToken = 'pk.eyJ1Ijoia2h5MjM2IiwiYSI6ImNsZzVxYTVnNDA1d2kzZW45b3l5d280N3oifQ.GqfNX5HwLaA5utEN2iQkXg';
 

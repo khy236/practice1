@@ -17,3 +17,5 @@ Text
 - Text
 - Text
 - Text
+
+![alt text](https://github.com/khy236/webmapping_final/images/home.png?raw=true)
