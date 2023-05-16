@@ -18,4 +18,6 @@ Text
 - Text
 - Text
 
-![alt text](/Users/karenyao/Library/Mobile Documents/com~apple~CloudDocs/NYU Wagner MUP/5. Spring 2023/5. Web Mapping/git repositories/webmapping_final/images/home.png)
+![plot](/Users/karenyao/Library/Mobile Documents/com~apple~CloudDocs/NYU Wagner MUP/5. Spring 2023/5. Web Mapping/git repositories/webmapping_final/images/home.png)
+
+<img src="images/home.png" width="128"/>
