@@ -1,5 +1,7 @@
 # NYC real estate flips
 
+<img src="images/home.png" width="100%"/>
+
 ## How to use this map
 X [text](link).
 
@@ -18,6 +20,3 @@ Text
 - Text
 - Text
 
-![plot](/Users/karenyao/Library/Mobile Documents/com~apple~CloudDocs/NYU Wagner MUP/5. Spring 2023/5. Web Mapping/git repositories/webmapping_final/images/home.png)
-
-<img src="images/home.png" width="128"/>
