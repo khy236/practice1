@@ -20,7 +20,7 @@ body {
 #content-container {
   flex-grow: 1;
   display: flex;
-  min-height: 1000px;
+  min-height: 850px;
 }
 
 #sidebar {
@@ -78,6 +78,7 @@ table, th, td {
 }
 
 
+
 /* popup */
 .mapboxgl-popup-content {
   color: #6b4f4d;
@@ -125,6 +126,10 @@ h3 {
 a {
   text-decoration: none;
   color: #b98783;
+}
+
+mark {
+  background-color: #d06e68;
 }
 
 
@@ -185,4 +190,14 @@ a {
 
 .button:-webkit-details-marker {
   display: none;
+}
+
+
+/* bullet styling */
+ul.a {
+  list-style-type: circle;
+}
+
+ul.b {
+  list-style-type: square;
 }
