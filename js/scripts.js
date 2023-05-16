@@ -169,21 +169,23 @@ map.on('load', function () {
     document.getElementById('chart').style.display = "none";
     $('#description').html(`
     <h2>
-    <br>
-    The Central Brooklyn neighborhoods of Bed-Stuy, Crown Heights, Ocean Hill, and Prospect Lefferts Gardens contain <b>23% of all NYC properties that have been sold 5+ times over the last three decades</b>. This map highlights these frequently-sold properties in red.
-    <br><br><br>
-    <b>Hover</b> over a red, highlighted lot to view the BBL and address of the frequently-sold property that sits on it and the number of times it has been sold since 2003.
-    <br><br>
-    <b>Click</b> on the lot to view its sales history and more details on the property.
-    <br><br>
-    If you want to view frequently-sold properties outside Central Brooklyn,  <b>search</b> for a specific address or <b>toggle</b> to a view of the entire city using the navigation buttons on the top-right.
-    <br><br><br><br><br><br>
-    <b>Data sources:</b>
-    <ul>
-        <li>Property sales data is from the <a href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page' target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized Sales</a>. </li>
-        <li>Tax lot outlines are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page' target="_blank" rel="noopener noreferrer">NYC PLUTO</a>.</li>
-        <li>Neighborhood Tabulation Areas used to define the Central Brooklyn neighborhoods that this map focuses on are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data.page' target="_blank" rel="noopener noreferrer">BYTES of the BIG APPLE™</a>.</li>
-    </ul>
+      <br>
+      This map shows properties that have been sold 5+ times over the last three decades. It focuses on the Central Brooklyn neighborhoods of Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill because they rank highest in terms of number of flipped properties and contain <b>28% of NYC's most-sold properties</b>. 
+      <br><br><br><br>
+      <b>How to use this map:</b>
+      <ul>
+          <li>Frequently-sold properties are highlighted in <b>red</b>.</li>
+          <li><b>Hover</b> over a red, highlighted lot to view the Borough-Block-Lot (BBL) ID and address of the frequently-sold property that sits on it, as well as the number of times it has been sold since 2003.</li>
+          <li><b>Click</b> on the lot to view its sales history and more details about the property.</li>
+          <li>If you would like to view frequently-sold properties outside Central Brooklyn,  <b>search</b> for a specific address or <b>toggle</b> to a view of the entire city using the navigation buttons on the top-right.</li>
+      </ul>
+      <br><br>
+      <b>Data sources:</b>
+      <ul>
+          <li>Property sales data is from the <a href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page' target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized Sales</a>. </li>
+          <li>Tax lot outlines are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page' target="_blank" rel="noopener noreferrer">NYC PLUTO</a>.</li>
+          <li>Neighborhood Tabulation Areas used to define the Central Brooklyn neighborhoods that this map focuses on are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data.page' target="_blank" rel="noopener noreferrer">BYTES of the BIG APPLE™</a>.</li>
+      </ul>
     </h2>
     `);
     $('#chart_text').html(``);
