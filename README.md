@@ -18,4 +18,4 @@ Text
 - Text
 - Text
 
-![alt text](https://github.com/khy236/webmapping_final/images/home.png?raw=true)
+![alt text](https://github.com/khy236/webmapping_final/main/images/home.png?raw=true)
