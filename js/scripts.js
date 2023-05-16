@@ -125,7 +125,6 @@ map.on('load', function () {
     // add details to description div
     $('#description').html(`
     <div>
-    <br>
     <h2><b>DOF-recorded sale address</b></h2>
     <h3>
         ${feature.properties.address},
@@ -169,8 +168,7 @@ map.on('load', function () {
     document.getElementById('chart').style.display = "none";
     $('#description').html(`
     <h2>
-      <br>
-      This map shows properties that have been sold 5+ times over the last three decades. It focuses on the Central Brooklyn neighborhoods of Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill because they rank highest in terms of number of flipped properties and contain <b>28% of NYC's most-sold properties</b>. 
+      This map shows properties that have been sold 5+ times over the last three decades. It focuses on the Central Brooklyn neighborhoods of Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill because they rank highest in number of flipped properties and contain <b>28% of NYC's most-sold properties</b> altogether.
       <br><br><br><br>
       <b>How to use this map:</b>
       <ul>
