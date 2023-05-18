@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title> NYC real estate flips</title>
+    <title>FOR SALE: Central Brooklyn</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-    
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+        type="text/css">
+
     <link href="css/styles.css" rel="stylesheet">
 </head>
 
@@ -17,25 +19,53 @@
 
         <div id="content-container">
             <div id="sidebar">
-                <h1>Real estate flipping in Central Brooklyn<br>(2003 - 2030)</h1>
+                <h1><i class="fa-solid fa-sign-hanging"></i> FOR SALE: Central Brooklyn</h1>
                 <div id="description">
                     <h2>
-                        This map shows properties that have been sold 5+ times over the last three decades. It focuses on the Central Brooklyn neighborhoods of Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill because they rank highest in number of flipped properties and contain <b>28% of NYC's most-sold properties</b> altogether. 
+                        <br>
+                        Central Brooklyn contains the greatest concentration of frequently sold or "flipped" properties
+                        in NYC. Together, Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill contain 28% of all NYC
+                        properties that were sold 5+ times over the last three decades (from 2003 to 2023).
+                        <br><br><br>
+                        <b>Use this map to explore these flipped properties. </b>What do you think is driving the
+                        frequency and prices at which they are sold? What do you think these sales have meant for owners
+                        and residents in this area?
                         <br><br><br><br>
-                        <b>How to use this map:</b>
-                        <ul>
-                            <li>Frequently-sold properties are highlighted in <b>red</b>.</li>
-                            <li><b>Hover</b> over a red, highlighted lot to view the Borough-Block-Lot (BBL) ID and address of the frequently-sold property that sits on it, as well as the number of times it has been sold since 2003.</li>
-                            <li><b>Click</b> on the lot to view its sales history and more details about the property.</li>
-                            <li>If you would like to view frequently-sold properties outside Central Brooklyn,  <b>search</b> for a specific address or <b>toggle</b> to a view of the entire city using the navigation buttons on the top-right.</li>
-                        </ul>
+                        <button type="button" class="collapsible">How to control this map</button>
+                        <div class="content">
+                            <ul>
+                                <li>The lots that frequently-sold properties sit on are colored <b>red</b>.</li>
+                                <li><b>Hover</b> over a red, highlighted lot to view the Borough-Block-Lot (BBL) ID and
+                                    address of the frequently-sold property that sits on it, as well as the number of
+                                    times
+                                    it has been sold since 2003.</li>
+                                <li><b>Click</b> on the lot to view its sales history and more details about the
+                                    property.
+                                </li>
+                                <li>If you would like to view frequently-sold properties outside Central Brooklyn,
+                                    <b>search</b> for a specific address or <b>toggle</b> to a view of the entire city
+                                    using
+                                    the navigation buttons on the top-right.
+                                </li>
+                            </ul>
+                        </div>
                         <br><br>
-                        <b>Data sources:</b>
-                        <ul>
-                            <li>Property sales data is from the <a href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page' target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized Sales</a>. </li>
-                            <li>Tax lot outlines are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page' target="_blank" rel="noopener noreferrer">NYC PLUTO</a>.</li>
-                            <li>Neighborhood Tabulation Areas used to define the Central Brooklyn neighborhoods that this map focuses on are from <a href='https://www.nyc.gov/site/planning/data-maps/open-data.page' target="_blank" rel="noopener noreferrer">BYTES of the BIG APPLE™</a>.</li>
-                        </ul>
+                        <button type="button" class="collapsible">Data sources</button>
+                        <div class="content">
+                            <ul>
+                                <li>Property sales data is from the <a
+                                        href='https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page'
+                                        target="_blank" rel="noopener noreferrer">NYC Department of Finance Annualized
+                                        Sales</a>. </li>
+                                <li>Tax lot outlines are from <a
+                                        href='https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page'
+                                        target="_blank" rel="noopener noreferrer">NYC PLUTO</a>.</li>
+                                <li>Neighborhood Tabulation Areas used to define the Central Brooklyn neighborhoods that
+                                    this map focuses on are from <a
+                                        href='https://www.nyc.gov/site/planning/data-maps/open-data.page'
+                                        target="_blank" rel="noopener noreferrer">BYTES of the BIG APPLE™</a>.</li>
+                            </ul>
+                        </div>
                     </h2>
                 </div>
                 <div id="chart_text"></div>
@@ -44,9 +74,12 @@
                 </div>
             </div>
             <div id="map"></div>
-            <button id="home" class="button" role="button"><i class="fa-solid fa-house"></i></i> Return to home page</button>
-            <button id="remove-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-minus"></i> Show me the whole city</button>
-            <button id="show-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-plus"></i> Focus on Central BK</button>
+            <button id="home" class="button" role="button"><i class="fa-solid fa-house"></i></i> Return to home
+                page</button>
+            <button id="remove-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-minus"></i>
+                Show me the whole city</button>
+            <button id="show-mask" class="button" role="button"><i class="fa-solid fa-magnifying-glass-plus"></i> Focus
+                on Central BK</button>
         </div>
 
     </div>
@@ -54,12 +87,14 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
     <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/37644020a3.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <script src="data/reflips_w_pluto_230514.js"></script>

@@ -1,5 +1,9 @@
-# Real estate flipping in Central Brooklyn (2003 - 2030)
-This map shows properties that have been sold 5+ times over the last three decades. It focuses on the Central Brooklyn neighborhoods of Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill because they rank highest in number of flipped properties and contain 28% of NYC's most-sold properties altogether. 
+# FOR SALE: Central Brooklyn
+Central Brooklyn contains the greatest concentration of frequently sold or "flipped" properties in NYC. Together, Bed-Stuy, Bushwick, Crown Heights, and Ocean Hill contain 28% of all NYC properties that were sold 5+ times over the last three decades (from 2003 to 2023).
+
+This mask invites users to explore these flipped properties in greater detail and ask themselves: 
+- What do they think is driving the frequency and prices at which they are sold? 
+- What do they think these sales have meant for owners and residents in this area?
 
 <img src="images/result.png" width="100%"/> 
 

@@ -1,3 +1,5 @@
+/* containers */
+
 #main-container {
   height: 100%;
   width: 100%;
@@ -43,40 +45,6 @@ body {
 #description {
   font-size: 14px;
 }
-
-/* table styling */
-table, th, td {
-  border: 1px solid;
-  border-collapse: collapse;
-  text-align: right;
-  padding: 5px;
-}
-
-/* button positions */
-#home {
-  position: absolute;
-  top: 55px;
-  right: 50px;
-  text-align: left;
-  width: 200px;
-}
-
-#remove-mask {
-  position: absolute;
-  top: 95px;
-  right: 50px;
-  text-align: left;
-  width: 200px;
-}
-
-#show-mask {
-  position: absolute;
-  top: 135px;
-  right: 50px;
-  text-align: left;
-  width: 200px;
-}
-
 
 
 /* popup */
@@ -130,6 +98,32 @@ a {
 
 mark {
   background-color: #d06e68;
+}
+
+
+/* button positions */
+#home {
+  position: absolute;
+  top: 55px;
+  right: 50px;
+  text-align: left;
+  width: 200px;
+}
+
+#remove-mask {
+  position: absolute;
+  top: 95px;
+  right: 50px;
+  text-align: left;
+  width: 200px;
+}
+
+#show-mask {
+  position: absolute;
+  top: 135px;
+  right: 50px;
+  text-align: left;
+  width: 200px;
 }
 
 
@@ -200,4 +194,35 @@ ul.a {
 
 ul.b {
   list-style-type: square;
+}
+
+/* collapsible styling */
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #eee;
+  color: #6b4f4d;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 18px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 8px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 18px;
 }
