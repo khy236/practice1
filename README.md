@@ -19,14 +19,14 @@ Central Brooklyn contains the greatest concentration of frequently sold or "flip
 
 ## Map-mapping takeaways
 Lessons learned:
-- *Condensing information:* My first draft displayed a table of sales data rather than a chart. The table was difficult to create and format, and overwhelming to interpret. I sought advice from my Professor (@chriswhong) and he directed me to try the jscharts package, which was remarkably easy to use and allowed me to display sales history in a way that didn't overwhelm the viewer.
-- *Creating a responsive website layout:* Building on @chriswhong 's responsive web layout template, I designed this site to split the screen space between the map and data panel 50/50. While this looks simple, it took me many tries to display the map, data panel, and buttons in the sequence I wanted.
+- **Condensing information:** My first draft displayed a table of sales data rather than a chart. The table was difficult to create and format, and overwhelming to interpret. I sought advice from [@chriswhong](https://github.com/chriswhong), who directed me to try the chart.js package. It was remarkably easy to use and allowed me to display sales history in a way that didn't overwhelm the viewer.
+- **Creating a responsive website layout:** Building on @chriswhong's [responsive web layout template](https://github.com/chriswhong/responsive-web-map-layout/tree/main), I designed this site to split the screen space between the map and data panel 50/50. While this looks simple, it took me many tries to display the map, data panel, and buttons in the sequence I wanted.
 
 Challenges:
-- *Data processing workflow:* X
-- *X:* X
+- **Interpreting sales patterns:** My first draft focused on Jackson Heights because it was an area that my initial data analysis flagged as a hotsplot for real estate sales. Turns out, I was counting all coop sales against the buildings they were in, resulting in concentrations of flipping in locations with concentrations of coops. I adjusted my data processing methodology to look for sales with the same address after that, as DOF annualized sales data includes unit numbers in addresses. While imperfect, this approach avoided double-counting.
+- **Data processing workflow:** My data processing workflow was long and hard to replicate. I processed DOF sales data for most-flipped properties locally in R Studio and then uploaded the most-flipped properties to VS Studio where I converted the csv data from R into JSON format. Every time I changed my locational focus, I downloaded Neighborhood Tabulation Area polygons locally from BYTES of the BIG APPLE™, selected the ones I wanted in QGIS, and then exported them as geoJSONs to display in the map. Both these workflows are manual, time-consuming, and prone to error with repetition.
 
 Opportunities for further exploration:
-- *Data exploration:* X
-- *Adding imagery:* X
-- *Adding narrative:* X
+- **Data exploration:** X
+- **Adding imagery:** X
+- **Adding narrative:** X
