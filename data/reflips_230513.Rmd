@@ -143,22 +143,3 @@ write.csv(reflipsexport, filename)
 test <- reflipsexport %>% arrange(desc(num_sales)) %>% select(bbl, address, num_sales)
   
 ```
-
-
-## Find mortgage info on most flipped properties from ACRIS - NEXT UP
-```{r}
-# read in mortgage data from ACRIS
-sales <- dbReadTable(con,'acris') %>% 
-  filter(bbl %in% most_flipped_bbls) %>%
-  select(bbl, sale_price, sale_date, residential_units) %>%
-  rename(unitsres = residential_units,
-         saleprice = sale_price,
-         saledate = sale_date)
-
-
-
-
-
-
-```
-

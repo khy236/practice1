@@ -19,8 +19,8 @@ Central Brooklyn contains the greatest concentration of frequently sold or "flip
 
 ## Map-mapping takeaways
 Lessons learned:
-- *Data cleaning:* X
-- *Website layout:* X
+- *Condensing information:* My first draft displayed a table of sales data rather than a chart. The table was difficult to create and format, and overwhelming to interpret. I sought advice from my Professor (@chriswhong) and he directed me to try the jscharts package, which was remarkably easy to use and allowed me to display sales history in a way that didn't overwhelm the viewer.
+- *Creating a responsive website layout:* Building on @chriswhong 's responsive web layout template, I designed this site to split the screen space between the map and data panel 50/50. While this looks simple, it took me many tries to display the map, data panel, and buttons in the sequence I wanted.
 
 Challenges:
 - *Data processing workflow:* X
