@@ -1,0 +1,164 @@
+---
+title: "real_estate_flips"
+output: html_document
+date: '2023-04-27'
+---
+
+## Read in packages
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(scales)
+library(dplyr)
+```
+
+## Connect to nycdb
+
+```{r}
+# Instructions to connect R to Postgres via https://www.datacareer.de/blog/connect-to-postgresql-with-r-a-step-by-step-example/
+
+usePackage <- function(p) { # source: https://stackoverflow.com/questions/19596359/install-package-library-if-not-installed
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE)
+  require(p, character.only = TRUE)
+}
+
+usePackage('RPostgreSQL')
+usePackage('devtools')
+usePackage('remotes')
+remotes::install_github("r-dbi/RPostgres")
+usePackage('RPostgres') 
+
+library('RPostgres')
+
+library(DBI)
+
+db <- 'nycdb'  #provide the name of your db
+host_db <- 'nyc-db.cluster-custom-ckvyf7p6u5rl.us-east-1.rds.amazonaws.com' #i.e. # i.e. 'ec2-54-83-201-96.compute-1.amazonaws.com'  
+db_port <- 5432  # or any other port specified by the DBA
+db_user <- 'anon'
+db_password <- 'tenantpower'
+
+con <- dbConnect(RPostgres::Postgres(), dbname = db, host=host_db, port=db_port, user=db_user, password=db_password) 
+
+
+#test connection
+ # dbListTables(con) 
+ # 
+ # dbReadTable(con,'dof_sales')
+ # 
+ # dbGetQuery(con, 'select * from dof_annual_sales limit 100')
+```
+
+
+## Clean PLUTO NYC tax lot data
+
+```{r}
+# 0. Read in data
+pluto <- read_csv('pluto_23v1.csv') %>% clean_names()
+
+# 1. Convert borough abbreviations to full names
+boro_vec <- c("MN" = "Manhattan", "BK" = "Brooklyn", "QN" = "Queens", "SI" = "Staten Island", "BX" = "Bronx")
+pluto$borough <- boro_vec[as.character(pluto$borough)]
+
+# 2. Calculate # of commercial units, DOB score, add HPD link, and select relevant fields
+pluto <- pluto %>%
+  mutate(unitscomm = unitstotal - unitsres) %>%
+  select(address,
+         borough,
+         block,
+         lot, 
+         bbl,  
+         zipcode, 
+         address, 
+         numbldgs,
+         unitsres, 
+         unitscomm, 
+         unitstotal,
+         yearbuilt,
+         borocode) 
+
+```
+
+## Find most flipped properties from DOF sales data
+
+```{r}
+# read in DOF annual sales data (since 2003)
+sales <- dbReadTable(con,'dof_annual_sales') %>% 
+  select(bbl, sale_price, sale_date, residential_units, commercial_units, total_units, building_class_category, address, apartment_number) %>%
+  rename(unitsres = residential_units,
+         units = total_units,
+         unitscom = commercial_units,
+         saleprice = sale_price,
+         saledate = sale_date)
+
+
+# coop flag (if 1. totalunits = 0, 2. latest saleprice is not null, 3. unitsres > 0)
+# coop = ifelse(unitsres == 0 & is.na(saleprice2) == FALSE & unitsres > 0, TRUE, FALSE)
+
+
+
+# find properties sold >3x over last 20y
+most_flipped <- sales %>% 
+  group_by(address, bbl) %>%
+  mutate(num_sales = n()) %>% 
+  distinct(bbl, address, .keep_all = TRUE) %>%
+  filter(num_sales > 5)
+  #arrange(desc(num_sales)) %>%
+  #head(158510) #158,510 is top 10% of 1,585,104 properties in DOF sales data
+  
+most_flipped_addresses <- most_flipped$address
+
+# find prev sale date and price for each sale on most flipped properties
+most_flipped_data <- sales %>%
+  filter(address %in% most_flipped_addresses) %>%
+  filter(is.na(address) == FALSE & address != 0 & is.na(saleprice) == FALSE) %>%
+  group_by(address) %>%
+  mutate(num_sales = n()) %>% 
+  ungroup() %>%
+  mutate(saledate = as.Date(saledate, "%m/%d/%Y")) %>%
+  distinct(saledate, address, .keep_all = TRUE) %>%
+  arrange(desc(saledate)) %>%
+  group_by(address) %>%
+  mutate(prev_saledate = lead(saledate),
+         prev_saleprice = lead(saleprice)) %>%
+  arrange(address, saledate) %>%
+  mutate(saletime = saledate - prev_saledate)
+
+
+# join data with pluto and export
+most_flipped_data$bbl <- as.numeric(as.character(most_flipped_data$bbl)) 
+
+reflipsexport <- most_flipped_data
+
+reflipsexport <- pluto %>% inner_join(most_flipped_data, by = 'bbl')
+  
+directory <- getwd()
+date <- "230514" # change if updating version
+filename <- paste(directory, "/reflips_", date, ".csv", sep = "") 
+
+write.csv(reflipsexport, filename)
+
+test <- reflipsexport %>% arrange(desc(num_sales)) %>% select(bbl, address, num_sales)
+  
+```
+
+
+## Find mortgage info on most flipped properties from ACRIS - NEXT UP
+```{r}
+# read in mortgage data from ACRIS
+sales <- dbReadTable(con,'acris') %>% 
+  filter(bbl %in% most_flipped_bbls) %>%
+  select(bbl, sale_price, sale_date, residential_units) %>%
+  rename(unitsres = residential_units,
+         saleprice = sale_price,
+         saledate = sale_date)
+
+
+
+
+
+
+```
+
