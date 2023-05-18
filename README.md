@@ -13,7 +13,7 @@ This mask invites users to explore these flipped properties in greater detail an
 - Click on the lot to view its sales history and more details about the property.
 - If you would like to view frequently-sold properties outside Central Brooklyn, search for a specific address or toggle to a view of the entire city using the navigation buttons on the top-right.
 
-<img src="images/hover3.png" width="32.9%"/> <img src="images/search.png" width="32.9%"/> <img src="images/citywide.png" width="32.9%"/>
+<img src="images/hover3.png" width="32.9%"/> <img src="images/search.png" width="32.9%"/> <img src="images/citywide2.png" width="32.9%"/>
 
 ## Data sources
 - Property sales data is from the [NYC Department of Finance Annualized Sales](https://www.nyc.gov/site/finance/taxes/property-annualized-sales-update.page).
