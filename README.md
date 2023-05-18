@@ -5,7 +5,7 @@ This mask invites users to explore these flipped properties in greater detail an
 - What do they think is driving the frequency and prices at which they are sold? 
 - What do they think these sales have meant for owners and residents in this area?
 
-<img src="images/result.png" width="100%"/> 
+<img src="images/search2.png" width="100%"/> 
 
 ## How to use this map
 - Frequently-sold properties are highlighted in red. 
